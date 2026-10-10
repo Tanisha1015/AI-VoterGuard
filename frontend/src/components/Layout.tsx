@@ -22,14 +22,14 @@ export default function Layout() {
       </a>
 
       <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-2 px-4 py-2">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-2">
           <div>
             <p className="text-lg font-bold text-slate-900">{t("app.name")}</p>
             <p className="text-xs text-slate-600">{t("app.tagline")}</p>
           </div>
           <LanguageToggle />
         </div>
-        <nav aria-label={t("nav.label")} className="mx-auto max-w-3xl px-2">
+        <nav aria-label={t("nav.label")} className="mx-auto max-w-6xl px-2">
           <ul className="flex gap-1">
             {NAV_ITEMS.map((item) => (
               <li key={item.to}>
@@ -51,13 +51,13 @@ export default function Layout() {
       </header>
 
       <div role="note" className="border-b border-sky-200 bg-sky-50">
-        <p className="mx-auto max-w-3xl px-4 py-2 text-sm text-sky-900">
+        <p className="mx-auto max-w-6xl px-4 py-2 text-sm text-sky-900">
           <span aria-hidden="true">ⓘ </span>
           {t("banner.text")}
         </p>
       </div>
 
-      <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 py-6 focus:outline-none">
+      <main id="main" tabIndex={-1} className="mx-auto max-w-6xl px-4 py-6 focus:outline-none">
         <Outlet />
       </main>
     </div>

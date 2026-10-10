@@ -3,7 +3,17 @@
  * Used only when VITE_USE_MOCKS === "true". Unknown routes raise a clear error.
  */
 import type { Service } from "./client";
-import type { CitizenLookupRequest, Flag, FlagList, ReviewRequest } from "./types";
+import type {
+  AuditList,
+  AuditSummary,
+  BoothDetail,
+  BoothList,
+  CitizenLookupRequest,
+  Flag,
+  FlagList,
+  Review,
+  ReviewRequest,
+} from "./types";
 
 import auditSummary from "../mocks/audit_summary.json";
 import booths from "../mocks/booths.json";
@@ -62,13 +72,40 @@ function pickVerifyFixture(body: unknown): unknown {
   return verifyMatch;
 }
 
+/** In-memory review decisions so mock mode behaves like a real server within a session. */
+const reviewStore = new Map<string, Review>();
+
+/** Clear in-memory mock state (used between tests). */
+export function resetMockState(): void {
+  reviewStore.clear();
+}
+
+/** Thrown by mock handlers to simulate an HTTP error response. */
+export class MockHttpError extends Error {
+  readonly status: number;
+  readonly code: string;
+  constructor(status: number, code: string, message: string) {
+    super(message);
+    this.name = "MockHttpError";
+    this.status = status;
+    this.code = code;
+  }
+}
+
+/** All flags with any stored review decisions applied. */
+function currentFlags(): Flag[] {
+  return clone(flags as FlagList).items.map((f) => {
+    const review = reviewStore.get(f.flag_id);
+    return review ? { ...f, review: { ...review } } : f;
+  });
+}
+
 function filterFlags(query: URLSearchParams): FlagList {
-  const all = clone(flags as FlagList).items;
   const part = query.get("part_no");
   const severity = query.get("severity");
   const detector = query.get("detector");
   return {
-    items: all.filter(
+    items: currentFlags().filter(
       (f) =>
         (part === null || f.part_no === Number(part)) &&
         (severity === null || f.severity === severity) &&
@@ -78,26 +115,57 @@ function filterFlags(query: URLSearchParams): FlagList {
 }
 
 function reviewFlag(flagId: string, body: unknown): Flag {
-  const found = (flags as FlagList).items.find((f) => f.flag_id === flagId);
-  if (!found) throw new Error(`MOCK_FLAG_NOT_FOUND: ${flagId}`);
+  const found = currentFlags().find((f) => f.flag_id === flagId);
+  if (!found) throw new MockHttpError(404, "FLAG_NOT_FOUND", `No flag ${flagId}`);
   const req = body as ReviewRequest;
+  const review: Review = { status: req.status, note: req.note ?? null, reviewed_at: new Date().toISOString() };
+  reviewStore.set(flagId, review);
+  return { ...found, review };
+}
+
+/** Summary with pending_reviews recomputed from the review store. */
+function currentSummary(): AuditSummary {
+  const summary = clone(auditSummary as AuditSummary);
+  const reviewed = [...reviewStore.values()].filter((r) => r.status !== "PENDING").length;
+  summary.totals.pending_reviews = Math.max(0, summary.totals.pending_reviews - reviewed);
+  return summary;
+}
+
+/**
+ * Booth detail. Booth 17 has a full fixture; other booths are derived from booths.json
+ * (synthetic approximation for demo purposes only).
+ */
+function boothDetail(partNo: number): BoothDetail {
+  const boothFlags = currentFlags().filter((f) => f.part_no === partNo);
+  if (partNo === 17) return { ...clone(booth17 as BoothDetail), flags: boothFlags };
+  const summary = (booths as BoothList).items.find((b) => b.part_no === partNo);
+  if (!summary) throw new MockHttpError(404, "BOOTH_NOT_FOUND", `No booth ${partNo}`);
+  const female = Math.round(summary.removed * summary.female_removed_share);
   return {
-    ...clone(found),
-    review: { status: req.status, note: req.note ?? null, reviewed_at: new Date().toISOString() },
+    ...clone(summary),
+    gender_removed: { F: female, M: summary.removed - female, O: 0 },
+    age_band_removed_share: clone((booth17 as BoothDetail).age_band_removed_share),
+    flags: boothFlags,
   };
+}
+
+/** Audit list derived from the summary fixture. */
+function auditList(): AuditList {
+  const s = auditSummary as AuditSummary;
+  return { items: [{ audit_id: s.audit_id, ac_name: s.ac_name, created_at: s.created_at }] };
 }
 
 const AUDIT = "/api/audits/([^/]+)";
 
 const routes: Route[] = [
-  { service: "core", method: "GET", pattern: new RegExp(`^${AUDIT}/summary$`), handler: () => auditSummary },
+  { service: "core", method: "GET", pattern: /^\/api\/audits$/, handler: () => auditList() },
+  { service: "core", method: "GET", pattern: new RegExp(`^${AUDIT}/summary$`), handler: () => currentSummary() },
   { service: "core", method: "GET", pattern: new RegExp(`^${AUDIT}/booths$`), handler: () => booths },
   {
     service: "core",
     method: "GET",
     pattern: new RegExp(`^${AUDIT}/booths/(\\d+)$`),
-    // Only booth 17 has a detailed fixture; reuse it with the requested part number.
-    handler: (m) => ({ ...clone(booth17), part_no: Number(m[2]) }),
+    handler: (m) => boothDetail(Number(m[2])),
   },
   { service: "core", method: "GET", pattern: new RegExp(`^${AUDIT}/flags$`), handler: (_m, _b, q) => filterFlags(q) },
   {

@@ -1,6 +1,7 @@
 /** Typed functions for the Core API (Member A, :8000). See CONTRACT.md 6.3. */
 import { apiGet, apiPost, apiPut } from "./client";
 import type {
+  AuditList,
   AuditSummary,
   BoothDetail,
   BoothList,
@@ -17,6 +18,11 @@ import type {
 export const DEFAULT_AUDIT_ID = import.meta.env.VITE_AUDIT_ID ?? "aud_001";
 
 const audit = (auditId: string) => `/api/audits/${encodeURIComponent(auditId)}`;
+
+/** GET /api/audits: list of available audits (newest first is up to the server). */
+export function getAudits(): Promise<AuditList> {
+  return apiGet<AuditList>("core", "/api/audits");
+}
 
 export function getSummary(auditId: string = DEFAULT_AUDIT_ID): Promise<AuditSummary> {
   return apiGet<AuditSummary>("core", `${audit(auditId)}/summary`);

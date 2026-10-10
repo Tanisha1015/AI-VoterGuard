@@ -48,7 +48,7 @@ export default function Citizen() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-3xl space-y-6">
       <section aria-labelledby={`${baseId}-title`}>
         <h1 id={`${baseId}-title`} className="text-2xl font-bold text-slate-900">
           {t("citizen.title")}

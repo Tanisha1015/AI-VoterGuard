@@ -1,5 +1,5 @@
 /** Typed functions for the Trust service (Member B, :8002). See CONTRACT.md 6.5. */
-import { apiGet, apiPost } from "./client";
+import { apiGet, apiPost, baseUrl } from "./client";
 import type {
   ChainStatus,
   CreateReportRequest,
@@ -11,6 +11,11 @@ import type {
 
 export function createReport(body: CreateReportRequest): Promise<ReportCreated> {
   return apiPost<ReportCreated>("trust", "/api/reports", body);
+}
+
+/** Absolute URL for a trust-service file path such as "/files/VG-2026-0001.json". */
+export function trustFileUrl(path: string): string {
+  return `${baseUrl("trust")}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export function listReports(): Promise<ReportList> {

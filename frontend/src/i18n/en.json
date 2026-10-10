@@ -97,5 +97,149 @@
   "not_found": {
     "title": "Page not found",
     "back": "Go to the citizen page"
+  },
+  "common": {
+    "loading": "Loading…",
+    "load_error": "We could not load this information. Please try again.",
+    "retry": "Try again",
+    "no_audit": "No audit is available yet.",
+    "all": "All",
+    "flag_disclaimer": "Flags are prompts for field verification. They do not establish wrongdoing or eligibility."
+  },
+  "reviewer": {
+    "title": "Reviewer dashboard",
+    "subtitle": "{{ac_name}} · audit {{audit_id}}",
+    "kpi": {
+      "label": "Key figures",
+      "draft_count": "Draft voters",
+      "final_count": "Final voters",
+      "removed": "Removed",
+      "added": "Added",
+      "flagged_booths": "Flagged booths",
+      "pending_reviews": "Pending reviews"
+    },
+    "heatmap": {
+      "title": "Booths by risk score",
+      "intro": "Each tile is one booth. Darker tiles have a higher risk score. Booths with flags have a bold border and a flag mark. Select a tile to open the booth.",
+      "tile_label": "Booth {{part}}, risk score {{score}}",
+      "tile_flagged": "{{count}} flag(s), worth verifying",
+      "tile_unflagged": "no flags",
+      "legend": "Risk score scale",
+      "flagged_legend": "Bold border = has flags"
+    },
+    "table": {
+      "title": "All booths",
+      "caption": "Booth list. Use the column buttons to sort.",
+      "part_no": "Part",
+      "removed": "Removed",
+      "deletion_rate": "Removal rate",
+      "risk_score": "Risk score",
+      "flag_count": "Flags",
+      "sort_by": "Sort by {{column}}",
+      "severity_filter": "Flag severity",
+      "detector_filter": "Flag type",
+      "empty": "No booths match these filters.",
+      "open_booth": "Open booth {{part}}"
+    },
+    "severity": {
+      "LOW": "Low",
+      "MEDIUM": "Medium",
+      "HIGH": "High"
+    },
+    "detector": {
+      "DELETION_RATE": "Removal rate compared with constituency",
+      "REASON_DOMINANCE": "One removal reason dominates",
+      "GENDER_SKEW": "Gender balance of removals",
+      "AGE_SKEW": "Age balance of removals",
+      "HOUSE_CLUSTER": "Removals concentrated in few houses",
+      "DUPLICATE_ENTRY": "Possible repeated entries",
+      "DATA_QUALITY": "Data quality check"
+    },
+    "metric": {
+      "deletion_rate": "Removal rate",
+      "shifted_share": "Share recorded as shifted",
+      "female_removed_share": "Share of women among removals",
+      "house_cluster_share": "Share from a few house numbers",
+      "line": "{{name}}: {{value}} (constituency baseline {{baseline}})"
+    },
+    "source": {
+      "agent": "AI-assisted",
+      "template": "Template"
+    },
+    "finalize": {
+      "title": "Finalize and record report",
+      "intro": "This saves a report of the current review and records its fingerprint (hash) on the local ledger so anyone can check it later.",
+      "reviewer_name": "Reviewer name",
+      "reviewer_name_required": "Please enter the reviewer name.",
+      "pending": "Pending reviews: {{count}}",
+      "pending_note": "Some flags are still pending. You can still finalize; the report will show them as pending.",
+      "submit": "Finalize and record report",
+      "submitting": "Recording…",
+      "error_ledger": "The report ledger could not be reached right now. Nothing was recorded. Please try again in a moment.",
+      "error_rejected": "The service could not accept this request: {{message}}",
+      "error_network": "We could not reach the trust service. Please check the connection and try again.",
+      "error_generic": "Something did not work as expected. Please try again."
+    },
+    "report": {
+      "title": "Report recorded",
+      "report_id": "Report ID",
+      "report_hash": "Report hash",
+      "tx_hash": "Transaction hash",
+      "block": "Block",
+      "recorded_at": "Recorded at",
+      "copy": "Copy hash",
+      "copied": "Copied",
+      "copy_failed": "Could not copy",
+      "download_json": "Download JSON",
+      "download_pdf": "Download PDF",
+      "verify_link": "Verify this report"
+    }
+  },
+  "booth": {
+    "title": "Booth {{part}}",
+    "back": "Back to dashboard",
+    "not_found": "This booth was not found in the current audit.",
+    "stats_label": "Booth figures",
+    "draft_count": "Draft voters",
+    "final_count": "Final voters",
+    "removed": "Removed",
+    "added": "Added",
+    "deletion_rate": "Removal rate",
+    "risk_score": "Risk score",
+    "charts_title": "Patterns among removals",
+    "chart_reason": "Recorded reasons (share of removals)",
+    "chart_gender": "Removals by gender (count)",
+    "chart_age": "Removals by age group (share)",
+    "chart_table": "Show data as a table",
+    "chart_category": "Category",
+    "chart_value": "Value",
+    "reason": {
+      "ABSENT": "Absent",
+      "SHIFTED": "Shifted",
+      "DEAD": "Deceased",
+      "DUPLICATE": "Repeated entry"
+    },
+    "gender": {
+      "F": "Women",
+      "M": "Men",
+      "O": "Other"
+    },
+    "flags_title": "Flags for review",
+    "no_flags": "No flags were raised for this booth.",
+    "explanation": "Explanation",
+    "checks": "Recommended checks",
+    "review": {
+      "label": "Review decision",
+      "accept": "Accept",
+      "reject": "Not taken forward",
+      "note": "Reviewer note (optional)",
+      "status": "Status",
+      "saving": "Saving…",
+      "reviewed_at": "Saved {{time}}",
+      "error": "The decision could not be saved and has been undone. Please try again.",
+      "PENDING": "Pending",
+      "ACCEPTED": "Accepted for field check",
+      "REJECTED": "Not taken forward"
+    }
   }
 }

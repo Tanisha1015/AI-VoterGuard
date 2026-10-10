@@ -3,7 +3,7 @@
  * When VITE_USE_MOCKS === "true", requests are answered from src/mocks (see mockRouter.ts).
  */
 import type { ApiErrorBody } from "./types";
-import { resolveMock } from "./mockRouter";
+import { MockHttpError, resolveMock } from "./mockRouter";
 
 export type Service = "core" | "trust";
 
@@ -59,7 +59,12 @@ type Method = "GET" | "POST" | "PUT";
 async function request<T>(service: Service, method: Method, path: string, body?: unknown): Promise<T> {
   if (useMocks()) {
     await sleep(mockDelay());
-    return resolveMock<T>(service, method, path, body);
+    try {
+      return resolveMock<T>(service, method, path, body);
+    } catch (error) {
+      if (error instanceof MockHttpError) throw new ApiError(error.status, error.code, error.message);
+      throw error;
+    }
   }
 
   const isForm = typeof FormData !== "undefined" && body instanceof FormData;
