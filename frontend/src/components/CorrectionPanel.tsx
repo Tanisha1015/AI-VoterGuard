@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { createReport } from "../api/trust";
 import type { CreateReportRequest, ReportCreated, ReportListItem } from "../api/types";
 import { verifyErrorKey } from "../lib/verifyErrors";
+import { pushToast, toastKeyFor } from "../lib/toast";
 import FormField from "./FormField";
 
 export const REPORTS_QUERY_KEY = ["reports"] as const;
@@ -29,7 +30,10 @@ export default function CorrectionPanel({ report, auditId, onRecorded }: Correct
       await queryClient.invalidateQueries({ queryKey: REPORTS_QUERY_KEY });
       onRecorded(created);
     },
-    onError: () => queryClient.invalidateQueries({ queryKey: REPORTS_QUERY_KEY }),
+    onError: (err) => {
+      pushToast(toastKeyFor(err));
+      return queryClient.invalidateQueries({ queryKey: REPORTS_QUERY_KEY });
+    },
   });
 
   const blocked = report.superseded_by !== null;

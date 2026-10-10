@@ -7,3 +7,14 @@
 html {
   -webkit-text-size-adjust: 100%;
 }
+
+/* Long words and hashes wrap instead of pushing the page wider than a 360px screen. */
+body {
+  overflow-wrap: break-word;
+}
+
+/* Safety net: every keyboard-focusable control shows a visible ring, even without a utility class. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}

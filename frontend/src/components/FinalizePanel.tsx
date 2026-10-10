@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { createReport } from "../api/trust";
 import { ApiError, NetworkError } from "../api/client";
 import type { CreateReportRequest, ReportCreated } from "../api/types";
+import { pushToast, toastKeyFor } from "../lib/toast";
 import FormField from "./FormField";
 import ReportCard from "./ReportCard";
 
@@ -33,6 +34,7 @@ export default function FinalizePanel({ auditId, pendingReviews }: FinalizePanel
 
   const finalize = useMutation<ReportCreated, unknown, CreateReportRequest>({
     mutationFn: (body) => createReport(body),
+    onError: (err) => pushToast(toastKeyFor(err)),
   });
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {

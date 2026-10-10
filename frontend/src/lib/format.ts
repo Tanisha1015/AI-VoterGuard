@@ -13,6 +13,15 @@ export function formatPercent(share: number): string {
   return `${(share * 100).toFixed(1)}%`;
 }
 
+/**
+ * A flag metric value for display. Metrics named "*_rate" or "*_share" are shares (0..1) and shown as
+ * percentages; every other metric (dq_count, duplicate_pairs, dead_under_40, ...) is a plain count.
+ */
+export function formatMetricValue(name: string, value: number): string {
+  if (name.endsWith("_rate") || name.endsWith("_share")) return formatPercent(value);
+  return Number.isInteger(value) ? String(value) : value.toFixed(1);
+}
+
 /** ISO timestamp as a readable local date-time. Falls back to the raw string. */
 export function formatDateTime(iso: string, lang: Lang): string {
   const date = new Date(iso);

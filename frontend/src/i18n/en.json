@@ -103,7 +103,8 @@
       "recorded_at": "Recorded {{time}}",
       "superseded": "Superseded by {{id}}",
       "latest": "Latest version",
-      "select": "Select report {{id}}"
+      "select": "Select report {{id}}",
+      "empty_hint": "Finalize a report on the Reviewer page and it will appear here."
     },
     "slot": {
       "title": "Verify report {{id}}",
@@ -171,7 +172,8 @@
     "retry": "Try again",
     "no_audit": "No audit is available yet.",
     "all": "All",
-    "flag_disclaimer": "Flags are prompts for field verification. They do not establish wrongdoing or eligibility."
+    "flag_disclaimer": "Flags are prompts for field verification. They do not establish wrongdoing or eligibility.",
+    "no_audit_hint": "Start the core API with AUTO_SEED=true, or create an audit, then reload this page."
   },
   "reviewer": {
     "title": "Reviewer dashboard",
@@ -227,7 +229,16 @@
       "shifted_share": "Share recorded as shifted",
       "female_removed_share": "Share of women among removals",
       "house_cluster_share": "Share from a few house numbers",
-      "line": "{{name}}: {{value}} (constituency baseline {{baseline}})"
+      "line": "{{name}}: {{value}} (constituency baseline {{baseline}})",
+      "reason_share": "Share of the most common recorded reason",
+      "f_removed_share": "Share of women among removals",
+      "m_removed_share": "Share of men among removals",
+      "young_removed_share": "Share aged 18-25 among removals",
+      "dead_under_40": "Removals recorded as deceased, under 40",
+      "max_house_additions": "Most additions at one house number",
+      "max_house_voters": "Most voters at one house number",
+      "duplicate_pairs": "Possible repeated-entry pairs",
+      "dq_count": "Data-quality issues"
     },
     "source": {
       "agent": "AI-assisted",
@@ -260,7 +271,8 @@
       "download_json": "Download JSON",
       "download_pdf": "Download PDF",
       "verify_link": "Verify this report"
-    }
+    },
+    "no_flags_overall": "No flags were raised in this audit. Nothing is waiting for review."
   },
   "booth": {
     "title": "Booth {{part}}",
@@ -308,5 +320,12 @@
       "ACCEPTED": "Accepted for field check",
       "REJECTED": "Not taken forward"
     }
+  },
+  "toast": {
+    "dismiss": "Dismiss notice",
+    "network": "No connection to the service.",
+    "rate_limited": "Too many searches. Please wait a minute.",
+    "ledger": "The report ledger is not reachable right now.",
+    "generic": "That did not work. Please try again."
   }
 }

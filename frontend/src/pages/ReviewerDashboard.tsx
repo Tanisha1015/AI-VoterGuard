@@ -7,7 +7,8 @@ import Heatmap from "../components/Heatmap";
 import BoothTable from "../components/BoothTable";
 import FinalizePanel from "../components/FinalizePanel";
 import Disclaimer from "../components/Disclaimer";
-import { Loading, LoadError } from "../components/QueryState";
+import { EmptyState, Loading, LoadError } from "../components/QueryState";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 /** Reviewer dashboard (route "/reviewer"): KPIs, heatmap, booth table, finalize panel. */
 export default function ReviewerDashboard() {
@@ -20,9 +21,11 @@ export default function ReviewerDashboard() {
   const booths = useQuery({ queryKey: ["booths", auditId], queryFn: () => getBooths(auditId), enabled });
   const flags = useQuery({ queryKey: ["flags", auditId], queryFn: () => getFlags({}, auditId), enabled });
 
+  usePageTitle(t("reviewer.title"));
+
   if (audit.isLoading) return <Loading />;
   if (audit.isError) return <LoadError />;
-  if (!enabled) return <LoadError message={t("common.no_audit")} />;
+  if (!enabled) return <EmptyState title={t("common.no_audit")} hint={t("common.no_audit_hint")} testId="no-audit" />;
 
   return (
     <div className="space-y-6">
@@ -41,8 +44,14 @@ export default function ReviewerDashboard() {
 
       {booths.isLoading && <Loading />}
       {booths.isError && <LoadError onRetry={() => void booths.refetch()} />}
-      {booths.data && (
+      {booths.data && booths.data.items.length === 0 && (
+        <EmptyState title={t("reviewer.heatmap.empty")} testId="no-booths" />
+      )}
+      {booths.data && booths.data.items.length > 0 && (
         <>
+          {summary.data?.totals.flags === 0 && (
+            <EmptyState title={t("reviewer.no_flags_overall")} testId="no-flags" />
+          )}
           <Heatmap booths={booths.data.items} />
           <div>
             <BoothTable booths={booths.data.items} flags={flags.data?.items ?? []} />

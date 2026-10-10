@@ -14,6 +14,7 @@ import ReasonMixChart from "../components/charts/ReasonMixChart";
 import GenderChart from "../components/charts/GenderChart";
 import AgeBandChart from "../components/charts/AgeBandChart";
 import { Loading, LoadError } from "../components/QueryState";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 function Stats({ booth }: { booth: BoothDetailData }) {
   const { t } = useTranslation();
@@ -53,6 +54,7 @@ export default function BoothDetail() {
   });
 
   const notFound = booth.error instanceof ApiError && booth.error.status === 404;
+  usePageTitle(t("booth.title", { part }));
 
   return (
     <div className="space-y-6">
