@@ -1,0 +1,29 @@
+# VoterGuard India: project rules for Cline
+
+PURPOSE
+Open-source, non-partisan toolkit that audits electoral-roll revisions using synthetic data,
+flags unusual booth-level patterns for human verification, and records report hashes on a
+local blockchain. It NEVER decides voter eligibility and NEVER declares fraud.
+
+LANGUAGE SAFETY (applies to all code comments, UI text, explanations, and test data)
+- Do not write: fraud, illegal, rigging, ineligible, foreigner, infiltrator, "wrongly deleted"
+  as a conclusion.
+- Use: unusual, worth verifying, recommend a field check, consistent with / may indicate.
+- Never infer religion, caste, or citizenship from names. Only gender and age bands are analysed.
+
+DATA
+- Synthetic data only. Never scrape or hardcode real voter data. EPIC numbers start with VGX.
+- Public output is aggregate by default; individual records are masked.
+
+OWNERSHIP (never edit outside your allowed folders; message your teammate instead)
+- Member A: backend/, agent-service/, contracts/, scripts/, .env.example, Makefile
+- Member B: frontend/, trust-service/, chain/, docs/, README.md
+- The API contract is contracts/CONTRACT.md. Follow it exactly. Do not rename fields.
+
+ENGINEERING
+- All numbers, flags and scores come from deterministic code. An LLM may only phrase text.
+- Python 3.11 with type hints; Node 22 with TypeScript strict mode.
+- Every module gets tests. Keep functions small and documented.
+- Every service must run with a single command and expose GET /health or /api/health.
+- Prefer boring, well-known libraries. No unnecessary abstractions.
+- Never commit secrets, node_modules, data/, .venv, or build artifacts.
