@@ -5,6 +5,7 @@ import { reviewFlag } from "../api/core";
 import type { BoothDetail, Flag, ReviewRequest, ReviewStatus } from "../api/types";
 import { useLang } from "../i18n";
 import { formatDateTime } from "../lib/format";
+import { pushToast, toastKeyFor } from "../lib/toast";
 
 export const boothQueryKey = (auditId: string, part: number) => ["booth", auditId, part] as const;
 
@@ -45,8 +46,9 @@ export default function ReviewControls({ auditId, flag }: ReviewControlsProps) {
       }
       return { previous };
     },
-    onError: (_err, _body, ctx) => {
+    onError: (err, _body, ctx) => {
       if (ctx?.previous) queryClient.setQueryData(key, ctx.previous);
+      pushToast(toastKeyFor(err));
     },
     onSuccess: (saved) => {
       queryClient.setQueryData<BoothDetail>(key, (old) => (old ? withFlag(old, saved) : old));

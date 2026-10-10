@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import type { Flag } from "../api/types";
 import { useBi } from "../i18n";
-import { formatPercent } from "../lib/format";
+import { formatMetricValue } from "../lib/format";
 import SeverityChip from "./SeverityChip";
 import ReviewControls from "./ReviewControls";
 
@@ -13,8 +13,8 @@ function MetricLine({ flag }: { flag: Flag }) {
     <p className="text-sm text-slate-800">
       {t("reviewer.metric.line", {
         name,
-        value: formatPercent(flag.metric.value),
-        baseline: formatPercent(flag.metric.baseline),
+        value: formatMetricValue(flag.metric.name, flag.metric.value),
+        baseline: formatMetricValue(flag.metric.name, flag.metric.baseline),
       })}
     </p>
   );

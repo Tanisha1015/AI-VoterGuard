@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { citizenLookup } from "../api/core";
 import type { CitizenLookupRequest, CitizenLookupResponse } from "../api/types";
 import { useLang } from "../i18n";
+import { usePageTitle } from "../hooks/usePageTitle";
+import { pushToast, toastKeyFor } from "../lib/toast";
 import FormField from "../components/FormField";
 import CitizenResult from "../components/CitizenResult";
 import { buildRequest, EMPTY_FORM, errorKey, validate, type FieldErrors, type FieldName, type FormValues } from "./citizenForm";
@@ -20,7 +22,9 @@ export default function Citizen() {
 
   const lookup = useMutation<CitizenLookupResponse, unknown, CitizenLookupRequest>({
     mutationFn: (body) => citizenLookup(body),
+    onError: (err) => pushToast(toastKeyFor(err)),
   });
+  usePageTitle(t("citizen.title"));
 
   const id = (field: FieldName) => `${baseId}-${field}`;
   const err = (field: FieldName) => (errors[field] ? t(errors[field]) : undefined);

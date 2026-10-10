@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageToggle from "./LanguageToggle";
+import Toaster from "./Toaster";
 
 const NAV_ITEMS = [
   { to: "/", key: "nav.citizen", end: true },
@@ -60,6 +61,7 @@ export default function Layout() {
       <main id="main" tabIndex={-1} className="mx-auto max-w-6xl px-4 py-6 focus:outline-none">
         <Outlet />
       </main>
+      <Toaster />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import type { ReportListItem } from "../api/types";
 import { useLang } from "../i18n";
 import { formatDateTime, shortHash } from "../lib/format";
+import { EmptyState } from "./QueryState";
 
 interface ReportListProps {
   reports: ReportListItem[];
@@ -14,7 +15,9 @@ export default function ReportList({ reports, activeId, onSelect }: ReportListPr
   const { t } = useTranslation();
   const lang = useLang();
 
-  if (reports.length === 0) return <p className="text-slate-700">{t("verify.list.empty")}</p>;
+  if (reports.length === 0) {
+    return <EmptyState title={t("verify.list.empty")} hint={t("verify.list.empty_hint")} testId="reports-empty" />;
+  }
 
   return (
     <ul className="space-y-2" data-testid="report-list">

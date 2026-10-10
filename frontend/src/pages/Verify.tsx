@@ -9,6 +9,7 @@ import ReportList from "../components/ReportList";
 import VerifyPanel from "../components/VerifyPanel";
 import CorrectionPanel, { REPORTS_QUERY_KEY } from "../components/CorrectionPanel";
 import { Loading, LoadError } from "../components/QueryState";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 /** "What this proves / does not prove" panel (requirement 7). */
 function Explanation() {
@@ -35,6 +36,7 @@ export default function Verify() {
   const [params, setParams] = useSearchParams();
   const audit = useCurrentAudit();
   const reports = useQuery({ queryKey: REPORTS_QUERY_KEY, queryFn: listReports });
+  usePageTitle(t("verify.title"));
 
   const requested = params.get("report_id");
   const items = reports.data?.items ?? [];
