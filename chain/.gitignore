@@ -1,0 +1,9 @@
+node_modules/
+artifacts/
+cache/
+typechain-types/
+types/
+coverage/
+ignition/deployments/chain-31337/
+*.log
+.env
