@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@cline/sdk": "^0.0.92",
+    "fastify": "^5.12.5",
+    "zod": "^4.6.5"
+  }
+}
