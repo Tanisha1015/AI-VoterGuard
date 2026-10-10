@@ -12,6 +12,8 @@ export default defineConfig({
     globals: true,
     setupFiles: ["./src/test/setup.ts"],
     css: false,
+    // Full-app tests lazy-load the reviewer pages (Recharts); allow headroom when files run in parallel.
+    testTimeout: 15000,
     env: {
       VITE_USE_MOCKS: "true",
       VITE_MOCK_DELAY_MS: "0",

@@ -49,7 +49,14 @@ Citizen lookup rules (by the name typed in the form):
 | `added`       | ADDED       |
 | anything else | PRESENT     |
 
-When you upload a file for verification, a file name containing `mismatch` or `tamper` returns MISMATCH; any other name returns MATCH.
+Verify mocks (trust service):
+
+- Reports start from `report_list.json` (VG-2026-0001 superseded by 0002) and are kept in memory.
+  Recording a corrected version adds the next id on top and marks the old one superseded; correcting
+  an already superseded report returns 409, as the real service does.
+- `GET /files/{id}.json` returns a synthetic report file (canonical JSON built from `export.json`).
+- Verify compares content: the file from "Load original" returns MATCH; any other content
+  (a tampered copy or an edited upload) returns MISMATCH; an unknown report id returns NOT_FOUND.
 
 Reviewer mocks:
 

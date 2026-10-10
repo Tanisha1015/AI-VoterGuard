@@ -1,27 +1,15 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import type { ReportCreated } from "../api/types";
 import { trustFileUrl } from "../api/trust";
 import { useLang } from "../i18n";
 import { formatDateTime, shortHash } from "../lib/format";
-
-type CopyState = "idle" | "copied" | "failed";
+import CopyHash from "./CopyHash";
 
 /** Shows the recorded report with shortened hashes, copy button, downloads and a verify link. */
 export default function ReportCard({ report }: { report: ReportCreated }) {
   const { t } = useTranslation();
   const lang = useLang();
-  const [copy, setCopy] = useState<CopyState>("idle");
-
-  async function copyHash() {
-    try {
-      await navigator.clipboard.writeText(report.report_hash);
-      setCopy("copied");
-    } catch {
-      setCopy("failed");
-    }
-  }
 
   const linkClass =
     "inline-flex min-h-11 items-center rounded-lg border-2 border-blue-700 bg-white px-3 text-sm font-medium text-blue-800 hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700";
@@ -45,20 +33,8 @@ export default function ReportCard({ report }: { report: ReportCreated }) {
         </div>
         <div>
           <dt className="text-sm text-slate-600">{t("reviewer.report.report_hash")}</dt>
-          <dd className="flex flex-wrap items-center gap-2">
-            <code title={report.report_hash} className="font-mono">
-              {shortHash(report.report_hash)}
-            </code>
-            <button
-              type="button"
-              onClick={() => void copyHash()}
-              className="inline-flex min-h-11 items-center rounded-lg border border-slate-400 bg-white px-3 text-sm hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
-            >
-              {t("reviewer.report.copy")}
-            </button>
-            <span aria-live="polite" className="text-sm text-slate-700">
-              {copy === "copied" ? t("reviewer.report.copied") : copy === "failed" ? t("reviewer.report.copy_failed") : ""}
-            </span>
+          <dd>
+            <CopyHash value={report.report_hash} />
           </dd>
         </div>
         <div>

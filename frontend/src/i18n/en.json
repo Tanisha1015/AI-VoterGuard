@@ -87,12 +87,79 @@
     },
     "try_epic": "Search with EPIC number"
   },
-  "placeholder": {
-    "coming_soon": "Coming soon",
-    "reviewer_title": "Reviewer dashboard",
-    "booth_title": "Booth {{part}}",
-    "verify_title": "Verify a report",
-    "body": "This section is being built. Please check back later."
+  "verify": {
+    "title": "Verify a report",
+    "intro": "Check whether a report file is exactly the one recorded on the ledger. Choose a report, then load the original or upload a file.",
+    "explain": {
+      "title": "What this check means",
+      "proves_label": "What this proves:",
+      "proves": "the file has not changed since it was recorded.",
+      "not_proves_label": "What it does not prove:",
+      "not_proves": "that the findings are correct or that any removal was or was not appropriate."
+    },
+    "list": {
+      "title": "Recorded reports",
+      "empty": "No reports have been recorded yet.",
+      "recorded_at": "Recorded {{time}}",
+      "superseded": "Superseded by {{id}}",
+      "latest": "Latest version",
+      "select": "Select report {{id}}"
+    },
+    "slot": {
+      "title": "Verify report {{id}}",
+      "none_selected": "Select a report from the list to begin.",
+      "file_label": "Upload a report file (.json)",
+      "file_hint": "Use the JSON file downloaded from this service. The PDF is a readable copy and cannot be verified.",
+      "load_original": "Load original",
+      "loading_original": "Loading…",
+      "in_slot": "File ready: {{name}} ({{size}} bytes)",
+      "empty": "No file selected yet.",
+      "verify": "Verify",
+      "verifying": "Verifying…",
+      "tamper": "Simulate tampering",
+      "tamper_hint": "Changes one character of the loaded original and verifies the changed copy. Nothing is saved.",
+      "tamper_change": "Simulation: changed character {{position}} from “{{before}}” to “{{after}}”.",
+      "tamper_space": "Simulation: added one space at the end of the file."
+    },
+    "result": {
+      "region": "Verification result",
+      "simulation": "Simulation: this result is for a deliberately changed copy, not the recorded file.",
+      "MATCH_title": "Identical to the recorded report",
+      "MATCH_body": "This file is identical to the report recorded on {{time}}.",
+      "MISMATCH_title": "Different from the recorded report",
+      "MISMATCH_body": "This file is different from the recorded report. Even a one-character change gives a different fingerprint (hash).",
+      "NOT_FOUND_title": "No recorded report found",
+      "NOT_FOUND_body": "No report with the id {{id}} is recorded on the ledger.",
+      "report_id": "Report",
+      "computed_hash": "Hash of this file",
+      "onchain_hash": "Recorded hash",
+      "copy_computed": "Copy file hash",
+      "copy_onchain": "Copy recorded hash",
+      "submitter": "Recorded by",
+      "recorded_at": "Recorded at",
+      "not_recorded": "Not recorded",
+      "superseded": "A corrected version exists:",
+      "open_superseding": "View report {{id}}"
+    },
+    "correct": {
+      "title": "Record a corrected version",
+      "intro": "Records a new report from the current audit that replaces {{id}}. The original stays on the ledger and is marked as superseded.",
+      "reviewer_name": "Reviewer name",
+      "reviewer_name_required": "Please enter the reviewer name.",
+      "submit": "Record corrected version",
+      "submitting": "Recording…",
+      "already_superseded": "This report has already been replaced by {{id}}. Select the latest version to correct it.",
+      "success": "Recorded {{id}}. It now supersedes {{old}}."
+    },
+    "errors": {
+      "file_not_found": "The original file for this report could not be found on the trust service.",
+      "report_id_required": "The file does not contain a report id. Please upload the report JSON file.",
+      "conflict": "This report was already replaced by a newer version. The list has been refreshed.",
+      "ledger": "The ledger could not be reached right now. Please try again in a moment.",
+      "network": "We could not reach the trust service. Please check the connection and try again.",
+      "read_failed": "The file could not be read.",
+      "generic": "Something did not work as expected. Please try again."
+    }
   },
   "not_found": {
     "title": "Page not found",

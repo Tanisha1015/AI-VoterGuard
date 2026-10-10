@@ -3,7 +3,8 @@
  * When VITE_USE_MOCKS === "true", requests are answered from src/mocks (see mockRouter.ts).
  */
 import type { ApiErrorBody } from "./types";
-import { MockHttpError, resolveMock } from "./mockRouter";
+import { MockHttpError, resolveMock, type MockVerifyBody } from "./mockRouter";
+import { readFileText } from "../lib/readFile";
 
 export type Service = "core" | "trust";
 
@@ -56,16 +57,28 @@ function sleep(ms: number): Promise<void> {
 
 type Method = "GET" | "POST" | "PUT";
 
-async function request<T>(service: Service, method: Method, path: string, body?: unknown): Promise<T> {
-  if (useMocks()) {
-    await sleep(mockDelay());
-    try {
-      return resolveMock<T>(service, method, path, body);
-    } catch (error) {
-      if (error instanceof MockHttpError) throw new ApiError(error.status, error.code, error.message);
-      throw error;
-    }
+/** Mock mode cannot hash files, so multipart bodies are passed to the mock layer as text. */
+async function toMockBody(body: unknown): Promise<unknown> {
+  if (typeof FormData === "undefined" || !(body instanceof FormData)) return body;
+  const file = body.get("file");
+  const reportId = body.get("report_id");
+  const fileText: MockVerifyBody["fileText"] = file instanceof Blob ? await readFileText(file) : "";
+  return { fileText, reportId: typeof reportId === "string" && reportId ? reportId : null } satisfies MockVerifyBody;
+}
+
+async function mockRequest<T>(service: Service, method: Method, path: string, body?: unknown): Promise<T> {
+  await sleep(mockDelay());
+  const mockBody = await toMockBody(body);
+  try {
+    return resolveMock<T>(service, method, path, mockBody);
+  } catch (error) {
+    if (error instanceof MockHttpError) throw new ApiError(error.status, error.code, error.message);
+    throw error;
   }
+}
+
+async function request<T>(service: Service, method: Method, path: string, body?: unknown): Promise<T> {
+  if (useMocks()) return mockRequest<T>(service, method, path, body);
 
   const isForm = typeof FormData !== "undefined" && body instanceof FormData;
   const headers: Record<string, string> = { Accept: "application/json" };
@@ -110,4 +123,23 @@ export function apiPost<T>(service: Service, path: string, body?: unknown): Prom
 
 export function apiPut<T>(service: Service, path: string, body?: unknown): Promise<T> {
   return request<T>(service, "PUT", path, body);
+}
+
+/**
+ * GET a file as a raw Blob, without JSON parsing or re-encoding, so its bytes (and hash)
+ * stay exactly as stored. In mock mode the mock route returns the file text.
+ */
+export async function apiGetBlob(service: Service, path: string, type = "application/json"): Promise<Blob> {
+  if (useMocks()) {
+    const text = await mockRequest<string>(service, "GET", path);
+    return new Blob([text], { type });
+  }
+  let response: Response;
+  try {
+    response = await fetch(`${baseUrl(service)}${path}`);
+  } catch {
+    throw new NetworkError();
+  }
+  if (!response.ok) throw await toApiError(response);
+  return response.blob();
 }

@@ -251,9 +251,10 @@ export interface VerifyResult {
   report_id: string;
   status: VerifyStatus;
   computed_hash: Hash;
-  onchain_hash: Hash;
-  recorded_at: string;
-  submitter: string;
+  /** null when status is NOT_FOUND (nothing recorded on chain for this id). */
+  onchain_hash: Hash | null;
+  recorded_at: string | null;
+  submitter: string | null;
   superseded_by: string | null;
 }
 

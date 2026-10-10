@@ -25,11 +25,24 @@ import citizenRemoved from "../mocks/citizen_removed.json";
 import citizenAdded from "../mocks/citizen_added.json";
 import citizenNotFound from "../mocks/citizen_not_found.json";
 import citizenAmbiguous from "../mocks/citizen_ambiguous.json";
-import reportCreated from "../mocks/report_created.json";
-import reportList from "../mocks/report_list.json";
-import verifyMatch from "../mocks/verify_match.json";
-import verifyMismatch from "../mocks/verify_mismatch.json";
 import chainStatus from "../mocks/chain_status.json";
+import {
+  MockHttpError,
+  createMockReport,
+  getMockReport,
+  listMockReports,
+  mockReportFileText,
+  resetTrustMock,
+  verifyMock,
+} from "./mockTrust";
+
+export { MockHttpError };
+
+/** Body passed to the mock verify route: the uploaded file's text, read by the client. */
+export interface MockVerifyBody {
+  fileText: string;
+  reportId: string | null;
+}
 
 /** Error thrown when no fixture matches a request. */
 export class MockRouteError extends Error {
@@ -63,33 +76,13 @@ export function pickCitizenFixture(req: Partial<CitizenLookupRequest> | undefine
   return citizenPresent;
 }
 
-function pickVerifyFixture(body: unknown): unknown {
-  if (typeof FormData !== "undefined" && body instanceof FormData) {
-    const file = body.get("file");
-    const fileName = file instanceof File ? file.name.toLowerCase() : "";
-    if (fileName.includes("mismatch") || fileName.includes("tamper")) return verifyMismatch;
-  }
-  return verifyMatch;
-}
-
 /** In-memory review decisions so mock mode behaves like a real server within a session. */
 const reviewStore = new Map<string, Review>();
 
 /** Clear in-memory mock state (used between tests). */
 export function resetMockState(): void {
   reviewStore.clear();
-}
-
-/** Thrown by mock handlers to simulate an HTTP error response. */
-export class MockHttpError extends Error {
-  readonly status: number;
-  readonly code: string;
-  constructor(status: number, code: string, message: string) {
-    super(message);
-    this.name = "MockHttpError";
-    this.status = status;
-    this.code = code;
-  }
+  resetTrustMock();
 }
 
 /** All flags with any stored review decisions applied. */
@@ -181,18 +174,33 @@ const routes: Route[] = [
     pattern: /^\/api\/citizen\/lookup$/,
     handler: (_m, b) => pickCitizenFixture(b as Partial<CitizenLookupRequest>),
   },
-  { service: "trust", method: "POST", pattern: /^\/api\/reports$/, handler: () => reportCreated },
-  { service: "trust", method: "GET", pattern: /^\/api\/reports$/, handler: () => reportList },
-  { service: "trust", method: "POST", pattern: /^\/api\/reports\/verify$/, handler: (_m, b) => pickVerifyFixture(b) },
+  {
+    service: "trust",
+    method: "POST",
+    pattern: /^\/api\/reports$/,
+    handler: (_m, b) => createMockReport(b as { reviewer_name?: string; supersedes?: string | null }),
+  },
+  { service: "trust", method: "GET", pattern: /^\/api\/reports$/, handler: () => listMockReports() },
+  {
+    service: "trust",
+    method: "POST",
+    pattern: /^\/api\/reports\/verify$/,
+    handler: (_m, b) => {
+      const body = b as MockVerifyBody;
+      return verifyMock(body.fileText, body.reportId);
+    },
+  },
   {
     service: "trust",
     method: "GET",
     pattern: /^\/api\/reports\/([^/]+)$/,
-    handler: (m) => {
-      const id = decodeURIComponent(m[1] ?? "");
-      const listed = reportList.items.find((r) => r.report_id === id);
-      return { ...clone(reportCreated), report_id: id, superseded_by: listed?.superseded_by ?? null };
-    },
+    handler: (m) => getMockReport(decodeURIComponent(m[1] ?? "")),
+  },
+  {
+    service: "trust",
+    method: "GET",
+    pattern: /^\/files\/(VG-\d{4}-\d{4,})\.json$/,
+    handler: (m) => mockReportFileText(m[1] ?? ""),
   },
   { service: "trust", method: "GET", pattern: /^\/api\/chain\/status$/, handler: () => chainStatus },
 ];
