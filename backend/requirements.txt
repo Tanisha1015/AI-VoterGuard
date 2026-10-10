@@ -10,3 +10,4 @@ httpx
 faker
 pytest
 python-multipart
+respx
