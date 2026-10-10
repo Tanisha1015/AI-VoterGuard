@@ -1,0 +1,108 @@
+{
+  "items": [
+    {
+      "part_no": 17,
+      "draft_count": 812,
+      "final_count": 640,
+      "removed": 182,
+      "added": 10,
+      "deletion_rate": 0.224,
+      "reason_mix": {"ABSENT": 0.1, "SHIFTED": 0.82, "DEAD": 0.05, "DUPLICATE": 0.03},
+      "female_removed_share": 0.71,
+      "risk_score": 87,
+      "flagged": true,
+      "flag_count": 3
+    },
+    {
+      "part_no": 42,
+      "draft_count": 790,
+      "final_count": 686,
+      "removed": 118,
+      "added": 14,
+      "deletion_rate": 0.149,
+      "reason_mix": {"ABSENT": 0.12, "SHIFTED": 0.45, "DEAD": 0.33, "DUPLICATE": 0.1},
+      "female_removed_share": 0.52,
+      "risk_score": 74,
+      "flagged": true,
+      "flag_count": 1
+    },
+    {
+      "part_no": 8,
+      "draft_count": 845,
+      "final_count": 799,
+      "removed": 58,
+      "added": 12,
+      "deletion_rate": 0.069,
+      "reason_mix": {"ABSENT": 0.18, "SHIFTED": 0.37, "DEAD": 0.3, "DUPLICATE": 0.15},
+      "female_removed_share": 0.58,
+      "risk_score": 52,
+      "flagged": false,
+      "flag_count": 0
+    },
+    {
+      "part_no": 31,
+      "draft_count": 760,
+      "final_count": 714,
+      "removed": 61,
+      "added": 15,
+      "deletion_rate": 0.08,
+      "reason_mix": {"ABSENT": 0.15, "SHIFTED": 0.4, "DEAD": 0.35, "DUPLICATE": 0.1},
+      "female_removed_share": 0.54,
+      "risk_score": 48,
+      "flagged": false,
+      "flag_count": 0
+    },
+    {
+      "part_no": 5,
+      "draft_count": 801,
+      "final_count": 777,
+      "removed": 44,
+      "added": 20,
+      "deletion_rate": 0.055,
+      "reason_mix": {"ABSENT": 0.14, "SHIFTED": 0.41, "DEAD": 0.36, "DUPLICATE": 0.09},
+      "female_removed_share": 0.5,
+      "risk_score": 35,
+      "flagged": false,
+      "flag_count": 0
+    },
+    {
+      "part_no": 54,
+      "draft_count": 733,
+      "final_count": 715,
+      "removed": 36,
+      "added": 18,
+      "deletion_rate": 0.049,
+      "reason_mix": {"ABSENT": 0.16, "SHIFTED": 0.38, "DEAD": 0.37, "DUPLICATE": 0.09},
+      "female_removed_share": 0.47,
+      "risk_score": 28,
+      "flagged": false,
+      "flag_count": 0
+    },
+    {
+      "part_no": 23,
+      "draft_count": 868,
+      "final_count": 849,
+      "removed": 41,
+      "added": 22,
+      "deletion_rate": 0.047,
+      "reason_mix": {"ABSENT": 0.15, "SHIFTED": 0.4, "DEAD": 0.35, "DUPLICATE": 0.1},
+      "female_removed_share": 0.49,
+      "risk_score": 21,
+      "flagged": false,
+      "flag_count": 0
+    },
+    {
+      "part_no": 60,
+      "draft_count": 702,
+      "final_count": 680,
+      "removed": 31,
+      "added": 9,
+      "deletion_rate": 0.044,
+      "reason_mix": {"ABSENT": 0.17, "SHIFTED": 0.39, "DEAD": 0.34, "DUPLICATE": 0.1},
+      "female_removed_share": 0.51,
+      "risk_score": 14,
+      "flagged": false,
+      "flag_count": 0
+    }
+  ]
+}

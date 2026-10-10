@@ -1,0 +1,22 @@
+{
+  "explanation": {
+    "en": "Booth 17 shows a deletion rate of 22.4%, compared with a constituency baseline of 4.8%. This is unusual and worth verifying.",
+    "hi": "भाग संख्या 17 में नाम हटाने की दर 22.4% है, जबकि निर्वाचन क्षेत्र का आधारभूत औसत 4.8% है। यह असामान्य है और सत्यापन के योग्य है।"
+  },
+  "recommended_checks": [
+    {
+      "en": "Recommend a field check of a sample of removed entries in this booth.",
+      "hi": "इस भाग में हटाई गई प्रविष्टियों के एक नमूने की क्षेत्रीय जाँच की सिफारिश की जाती है।"
+    },
+    {
+      "en": "Compare the removal list with the Booth Level Officer's visit records.",
+      "hi": "हटाई गई सूची का मिलान बूथ स्तर अधिकारी के भ्रमण अभिलेखों से करें।"
+    }
+  ],
+  "neutrality": {
+    "passed": true,
+    "method": "blocklist+number_check+agent",
+    "violations": []
+  },
+  "source": "agent"
+}

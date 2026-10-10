@@ -1,0 +1,312 @@
+{
+  "app": {
+    "name": "VoterGuard India",
+    "tagline": "Electoral-roll revision audit (demo)",
+    "skip_to_content": "Skip to main content"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "citizen": "Citizen",
+    "reviewer": "Reviewer",
+    "verify": "Verify"
+  },
+  "lang": {
+    "label": "Language",
+    "en": "EN",
+    "hi": "हिन्दी"
+  },
+  "banner": {
+    "text": "Demo using synthetic data. This tool does not decide anyone's eligibility."
+  },
+  "disclaimer": {
+    "general": "This is a demonstration with synthetic data. Please confirm details with your Booth Level Officer or on the official Election Commission of India website."
+  },
+  "citizen": {
+    "title": "Check your entry in the roll",
+    "intro": "Enter your details exactly as they appear on your voter slip. We only show what the roll records; nothing you type is saved.",
+    "form_label": "Roll lookup form",
+    "name": "Your name",
+    "name_hint": "As written in the roll",
+    "relative_name": "Father's, mother's or husband's name",
+    "part_no": "Part (booth) number",
+    "part_no_hint": "Printed on your voter slip",
+    "use_epic": "Use my EPIC number instead",
+    "epic_no": "EPIC number",
+    "epic_hint": "For this demo, numbers start with VGX, for example VGX1234567",
+    "submit": "Check my entry",
+    "submitting": "Checking…",
+    "required_note": "All fields are required.",
+    "errors": {
+      "name_required": "Please enter your name.",
+      "relative_name_required": "Please enter the relative's name.",
+      "part_no_required": "Please enter the part number.",
+      "part_no_invalid": "Part number should be a whole number, such as 17.",
+      "epic_required": "Please enter your EPIC number.",
+      "rate_limited": "Many searches were made in a short time. Please wait a minute and try again.",
+      "network": "We could not reach the service. Please check your connection and try again.",
+      "generic": "Something did not work as expected. Please try again in a moment."
+    }
+  },
+  "result": {
+    "region_label": "Lookup result",
+    "status_label": "Status",
+    "epic": "EPIC (masked)",
+    "part_no": "Part number",
+    "name": "Name in roll",
+    "age_band": "Age group",
+    "reason": "Recorded reason",
+    "what_you_can_do": "What you can do",
+    "deadline": "Last date to apply",
+    "status": {
+      "PRESENT": {
+        "title": "Your name is in the final roll",
+        "body": "Your entry appears in the final roll for this part. No action is needed."
+      },
+      "REMOVED": {
+        "title": "Your entry is not in the final roll",
+        "body": "Your entry appeared in the draft roll but is not in the final roll. This can happen for several reasons, and it can be reviewed."
+      },
+      "ADDED": {
+        "title": "Your name has been added",
+        "body": "Your entry is new in the final roll for this part."
+      },
+      "NOT_FOUND": {
+        "title": "We could not find a matching entry",
+        "body": "Please check the spelling of both names and the part number, or try again using your EPIC number."
+      },
+      "AMBIGUOUS": {
+        "title": "More than one entry matches",
+        "body": "To protect privacy we do not list them. Please search again using your EPIC number."
+      }
+    },
+    "reasons": {
+      "ABSENT": "Recorded as not found at the address during house-to-house verification",
+      "SHIFTED": "Recorded as having moved to a different address",
+      "DEAD": "Recorded as deceased",
+      "DUPLICATE": "Recorded as a repeated entry"
+    },
+    "try_epic": "Search with EPIC number"
+  },
+  "verify": {
+    "title": "Verify a report",
+    "intro": "Check whether a report file is exactly the one recorded on the ledger. Choose a report, then load the original or upload a file.",
+    "explain": {
+      "title": "What this check means",
+      "proves_label": "What this proves:",
+      "proves": "the file has not changed since it was recorded.",
+      "not_proves_label": "What it does not prove:",
+      "not_proves": "that the findings are correct or that any removal was or was not appropriate."
+    },
+    "list": {
+      "title": "Recorded reports",
+      "empty": "No reports have been recorded yet.",
+      "recorded_at": "Recorded {{time}}",
+      "superseded": "Superseded by {{id}}",
+      "latest": "Latest version",
+      "select": "Select report {{id}}"
+    },
+    "slot": {
+      "title": "Verify report {{id}}",
+      "none_selected": "Select a report from the list to begin.",
+      "file_label": "Upload a report file (.json)",
+      "file_hint": "Use the JSON file downloaded from this service. The PDF is a readable copy and cannot be verified.",
+      "load_original": "Load original",
+      "loading_original": "Loading…",
+      "in_slot": "File ready: {{name}} ({{size}} bytes)",
+      "empty": "No file selected yet.",
+      "verify": "Verify",
+      "verifying": "Verifying…",
+      "tamper": "Simulate tampering",
+      "tamper_hint": "Changes one character of the loaded original and verifies the changed copy. Nothing is saved.",
+      "tamper_change": "Simulation: changed character {{position}} from “{{before}}” to “{{after}}”.",
+      "tamper_space": "Simulation: added one space at the end of the file."
+    },
+    "result": {
+      "region": "Verification result",
+      "simulation": "Simulation: this result is for a deliberately changed copy, not the recorded file.",
+      "MATCH_title": "Identical to the recorded report",
+      "MATCH_body": "This file is identical to the report recorded on {{time}}.",
+      "MISMATCH_title": "Different from the recorded report",
+      "MISMATCH_body": "This file is different from the recorded report. Even a one-character change gives a different fingerprint (hash).",
+      "NOT_FOUND_title": "No recorded report found",
+      "NOT_FOUND_body": "No report with the id {{id}} is recorded on the ledger.",
+      "report_id": "Report",
+      "computed_hash": "Hash of this file",
+      "onchain_hash": "Recorded hash",
+      "copy_computed": "Copy file hash",
+      "copy_onchain": "Copy recorded hash",
+      "submitter": "Recorded by",
+      "recorded_at": "Recorded at",
+      "not_recorded": "Not recorded",
+      "superseded": "A corrected version exists:",
+      "open_superseding": "View report {{id}}"
+    },
+    "correct": {
+      "title": "Record a corrected version",
+      "intro": "Records a new report from the current audit that replaces {{id}}. The original stays on the ledger and is marked as superseded.",
+      "reviewer_name": "Reviewer name",
+      "reviewer_name_required": "Please enter the reviewer name.",
+      "submit": "Record corrected version",
+      "submitting": "Recording…",
+      "already_superseded": "This report has already been replaced by {{id}}. Select the latest version to correct it.",
+      "success": "Recorded {{id}}. It now supersedes {{old}}."
+    },
+    "errors": {
+      "file_not_found": "The original file for this report could not be found on the trust service.",
+      "report_id_required": "The file does not contain a report id. Please upload the report JSON file.",
+      "conflict": "This report was already replaced by a newer version. The list has been refreshed.",
+      "ledger": "The ledger could not be reached right now. Please try again in a moment.",
+      "network": "We could not reach the trust service. Please check the connection and try again.",
+      "read_failed": "The file could not be read.",
+      "generic": "Something did not work as expected. Please try again."
+    }
+  },
+  "not_found": {
+    "title": "Page not found",
+    "back": "Go to the citizen page"
+  },
+  "common": {
+    "loading": "Loading…",
+    "load_error": "We could not load this information. Please try again.",
+    "retry": "Try again",
+    "no_audit": "No audit is available yet.",
+    "all": "All",
+    "flag_disclaimer": "Flags are prompts for field verification. They do not establish wrongdoing or eligibility."
+  },
+  "reviewer": {
+    "title": "Reviewer dashboard",
+    "subtitle": "{{ac_name}} · audit {{audit_id}}",
+    "kpi": {
+      "label": "Key figures",
+      "draft_count": "Draft voters",
+      "final_count": "Final voters",
+      "removed": "Removed",
+      "added": "Added",
+      "flagged_booths": "Flagged booths",
+      "pending_reviews": "Pending reviews"
+    },
+    "heatmap": {
+      "title": "Booths by risk score",
+      "intro": "Each tile is one booth. Darker tiles have a higher risk score. Booths with flags have a bold border and a flag mark. Select a tile to open the booth.",
+      "tile_label": "Booth {{part}}, risk score {{score}}",
+      "tile_flagged": "{{count}} flag(s), worth verifying",
+      "tile_unflagged": "no flags",
+      "legend": "Risk score scale",
+      "flagged_legend": "Bold border = has flags"
+    },
+    "table": {
+      "title": "All booths",
+      "caption": "Booth list. Use the column buttons to sort.",
+      "part_no": "Part",
+      "removed": "Removed",
+      "deletion_rate": "Removal rate",
+      "risk_score": "Risk score",
+      "flag_count": "Flags",
+      "sort_by": "Sort by {{column}}",
+      "severity_filter": "Flag severity",
+      "detector_filter": "Flag type",
+      "empty": "No booths match these filters.",
+      "open_booth": "Open booth {{part}}"
+    },
+    "severity": {
+      "LOW": "Low",
+      "MEDIUM": "Medium",
+      "HIGH": "High"
+    },
+    "detector": {
+      "DELETION_RATE": "Removal rate compared with constituency",
+      "REASON_DOMINANCE": "One removal reason dominates",
+      "GENDER_SKEW": "Gender balance of removals",
+      "AGE_SKEW": "Age balance of removals",
+      "HOUSE_CLUSTER": "Removals concentrated in few houses",
+      "DUPLICATE_ENTRY": "Possible repeated entries",
+      "DATA_QUALITY": "Data quality check"
+    },
+    "metric": {
+      "deletion_rate": "Removal rate",
+      "shifted_share": "Share recorded as shifted",
+      "female_removed_share": "Share of women among removals",
+      "house_cluster_share": "Share from a few house numbers",
+      "line": "{{name}}: {{value}} (constituency baseline {{baseline}})"
+    },
+    "source": {
+      "agent": "AI-assisted",
+      "template": "Template"
+    },
+    "finalize": {
+      "title": "Finalize and record report",
+      "intro": "This saves a report of the current review and records its fingerprint (hash) on the local ledger so anyone can check it later.",
+      "reviewer_name": "Reviewer name",
+      "reviewer_name_required": "Please enter the reviewer name.",
+      "pending": "Pending reviews: {{count}}",
+      "pending_note": "Some flags are still pending. You can still finalize; the report will show them as pending.",
+      "submit": "Finalize and record report",
+      "submitting": "Recording…",
+      "error_ledger": "The report ledger could not be reached right now. Nothing was recorded. Please try again in a moment.",
+      "error_rejected": "The service could not accept this request: {{message}}",
+      "error_network": "We could not reach the trust service. Please check the connection and try again.",
+      "error_generic": "Something did not work as expected. Please try again."
+    },
+    "report": {
+      "title": "Report recorded",
+      "report_id": "Report ID",
+      "report_hash": "Report hash",
+      "tx_hash": "Transaction hash",
+      "block": "Block",
+      "recorded_at": "Recorded at",
+      "copy": "Copy hash",
+      "copied": "Copied",
+      "copy_failed": "Could not copy",
+      "download_json": "Download JSON",
+      "download_pdf": "Download PDF",
+      "verify_link": "Verify this report"
+    }
+  },
+  "booth": {
+    "title": "Booth {{part}}",
+    "back": "Back to dashboard",
+    "not_found": "This booth was not found in the current audit.",
+    "stats_label": "Booth figures",
+    "draft_count": "Draft voters",
+    "final_count": "Final voters",
+    "removed": "Removed",
+    "added": "Added",
+    "deletion_rate": "Removal rate",
+    "risk_score": "Risk score",
+    "charts_title": "Patterns among removals",
+    "chart_reason": "Recorded reasons (share of removals)",
+    "chart_gender": "Removals by gender (count)",
+    "chart_age": "Removals by age group (share)",
+    "chart_table": "Show data as a table",
+    "chart_category": "Category",
+    "chart_value": "Value",
+    "reason": {
+      "ABSENT": "Absent",
+      "SHIFTED": "Shifted",
+      "DEAD": "Deceased",
+      "DUPLICATE": "Repeated entry"
+    },
+    "gender": {
+      "F": "Women",
+      "M": "Men",
+      "O": "Other"
+    },
+    "flags_title": "Flags for review",
+    "no_flags": "No flags were raised for this booth.",
+    "explanation": "Explanation",
+    "checks": "Recommended checks",
+    "review": {
+      "label": "Review decision",
+      "accept": "Accept",
+      "reject": "Not taken forward",
+      "note": "Reviewer note (optional)",
+      "status": "Status",
+      "saving": "Saving…",
+      "reviewed_at": "Saved {{time}}",
+      "error": "The decision could not be saved and has been undone. Please try again.",
+      "PENDING": "Pending",
+      "ACCEPTED": "Accepted for field check",
+      "REJECTED": "Not taken forward"
+    }
+  }
+}

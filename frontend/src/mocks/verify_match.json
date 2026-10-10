@@ -1,0 +1,9 @@
+{
+  "report_id": "VG-2026-0001",
+  "status": "MATCH",
+  "computed_hash": "0xc265421957a9e0738c37d6a6e567c8dd32d9b7e2f68aa23ea8c0fc3ccbd174bf",
+  "onchain_hash": "0xc265421957a9e0738c37d6a6e567c8dd32d9b7e2f68aa23ea8c0fc3ccbd174bf",
+  "recorded_at": "2026-10-10T10:05:00Z",
+  "submitter": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+  "superseded_by": null
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PRESENT",
+  "match_confidence": 0.95,
+  "record": {
+    "epic_masked": "VGX****219",
+    "part_no": 17,
+    "name_display": "Meena K.",
+    "age_band": "36-45"
+  },
+  "reason": null,
+  "next_step": null
+}
