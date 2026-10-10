@@ -1,0 +1,8 @@
+/backend/        @member-a
+/agent-service/  @member-a
+/contracts/      @member-a
+/scripts/        @member-a
+/frontend/       @member-b
+/trust-service/  @member-b
+/chain/          @member-b
+/docs/           @member-b

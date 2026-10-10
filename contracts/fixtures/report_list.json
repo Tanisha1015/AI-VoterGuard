@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "report_id": "VG-2026-0002",
+      "recorded_at": "2026-10-10T11:20:00Z",
+      "report_hash": "0x38199c78e74bd40e1101fc46c48a2fefb577f3341ff58af44d08217b3241193c",
+      "superseded_by": null
+    },
+    {
+      "report_id": "VG-2026-0001",
+      "recorded_at": "2026-10-10T10:05:00Z",
+      "report_hash": "0xc265421957a9e0738c37d6a6e567c8dd32d9b7e2f68aa23ea8c0fc3ccbd174bf",
+      "superseded_by": "VG-2026-0002"
+    }
+  ]
+}

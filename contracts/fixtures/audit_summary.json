@@ -1,0 +1,32 @@
+{
+  "audit_id": "aud_001",
+  "ac_no": 999,
+  "ac_name": "Demo Nagar (Synthetic)",
+  "created_at": "2026-10-10T09:00:00Z",
+  "snapshot_hashes": {
+    "draft": "0x1364a2279564450c583f847de1dd2bf79574675b4574c350f41290030c3bd70c",
+    "final": "0x39b1f734a7540db71624efafd03ebda5b76e7a1db2e67817c56b3d2ebf06b665",
+    "asdd": "0x2b030bfeb3f4e4c89a851b9e75092d81748d15af1787a7f23ff918f9306b60d5"
+  },
+  "totals": {
+    "draft_count": 48210,
+    "final_count": 46102,
+    "removed": 2301,
+    "added": 193,
+    "modified": 57,
+    "booths": 60,
+    "flagged_booths": 6,
+    "flags": 9,
+    "pending_reviews": 9
+  },
+  "constituency_baseline": {
+    "deletion_rate": 0.048,
+    "deletion_rate_mad": 0.012
+  },
+  "reason_mix": {
+    "ABSENT": 0.2,
+    "SHIFTED": 0.4,
+    "DEAD": 0.35,
+    "DUPLICATE": 0.05
+  }
+}

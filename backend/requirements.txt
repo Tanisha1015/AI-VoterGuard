@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pydantic
+sqlmodel
+pandas
+numpy
+scikit-learn
+rapidfuzz
+httpx
+faker
+pytest
+python-multipart

@@ -1,0 +1,163 @@
+{
+  "audit_id": "aud_001",
+  "ac_no": 999,
+  "ac_name": "Demo Nagar (Synthetic)",
+  "generated_at": "2026-10-10T10:00:00Z",
+  "snapshot_hashes": {
+    "draft": "0x1364a2279564450c583f847de1dd2bf79574675b4574c350f41290030c3bd70c",
+    "final": "0x39b1f734a7540db71624efafd03ebda5b76e7a1db2e67817c56b3d2ebf06b665",
+    "asdd": "0x2b030bfeb3f4e4c89a851b9e75092d81748d15af1787a7f23ff918f9306b60d5"
+  },
+  "summary": {
+    "totals": {
+      "draft_count": 48210,
+      "final_count": 46102,
+      "removed": 2301,
+      "added": 193,
+      "modified": 57,
+      "booths": 60,
+      "flagged_booths": 6,
+      "flags": 9,
+      "pending_reviews": 9
+    },
+    "constituency_baseline": {
+      "deletion_rate": 0.048,
+      "deletion_rate_mad": 0.012
+    }
+  },
+  "flagged_booths": [
+    {
+      "booth": {
+        "part_no": 17,
+        "draft_count": 812,
+        "final_count": 640,
+        "removed": 182,
+        "added": 10,
+        "deletion_rate": 0.224,
+        "reason_mix": {"ABSENT": 0.1, "SHIFTED": 0.82, "DEAD": 0.05, "DUPLICATE": 0.03},
+        "female_removed_share": 0.71,
+        "risk_score": 87,
+        "flagged": true,
+        "flag_count": 3
+      },
+      "flags": [
+        {
+          "flag_id": "f_17_1",
+          "part_no": 17,
+          "detector": "DELETION_RATE",
+          "severity": "HIGH",
+          "metric": {"name": "deletion_rate", "value": 0.224, "baseline": 0.048},
+          "explanation": {
+            "en": "Booth 17 shows a deletion rate of 22.4%, compared with a constituency baseline of 4.8%. This is unusual and worth verifying.",
+            "hi": "भाग संख्या 17 में नाम हटाने की दर 22.4% है, जबकि निर्वाचन क्षेत्र का आधारभूत औसत 4.8% है। यह असामान्य है और सत्यापन के योग्य है।"
+          },
+          "recommended_checks": [
+            {
+              "en": "Recommend a field check of a sample of removed entries in this booth.",
+              "hi": "इस भाग में हटाई गई प्रविष्टियों के एक नमूने की क्षेत्रीय जाँच की सिफारिश की जाती है।"
+            }
+          ],
+          "explanation_source": "agent",
+          "review": {"status": "ACCEPTED", "note": "Field check scheduled", "reviewed_at": "2026-10-10T09:45:00Z"}
+        },
+        {
+          "flag_id": "f_17_2",
+          "part_no": 17,
+          "detector": "REASON_DOMINANCE",
+          "severity": "HIGH",
+          "metric": {"name": "shifted_share", "value": 0.82, "baseline": 0.4},
+          "explanation": {
+            "en": "In booth 17, 82% of removals are recorded with the reason SHIFTED, compared with about 40% across the constituency. This pattern is unusual and worth verifying.",
+            "hi": "भाग संख्या 17 में 82% नाम 'स्थानांतरित' कारण से हटाए गए हैं, जबकि पूरे निर्वाचन क्षेत्र में यह लगभग 40% है। यह पैटर्न असामान्य है और सत्यापन के योग्य है।"
+          },
+          "recommended_checks": [
+            {
+              "en": "Recommend visiting a sample of addresses recorded as SHIFTED to confirm the current residence.",
+              "hi": "'स्थानांतरित' दर्ज पतों के एक नमूने पर जाकर वर्तमान निवास की पुष्टि करने की सिफारिश की जाती है।"
+            }
+          ],
+          "explanation_source": "agent",
+          "review": {"status": "PENDING", "note": null, "reviewed_at": null}
+        },
+        {
+          "flag_id": "f_17_3",
+          "part_no": 17,
+          "detector": "GENDER_SKEW",
+          "severity": "HIGH",
+          "metric": {"name": "female_removed_share", "value": 0.71, "baseline": 0.5},
+          "explanation": {
+            "en": "Women account for 71% of removed entries in booth 17, against an expected share near 50%. This may indicate a pattern that is worth a field check.",
+            "hi": "भाग संख्या 17 में हटाई गई प्रविष्टियों में महिलाओं की हिस्सेदारी 71% है, जबकि अपेक्षित हिस्सा लगभग 50% है। यह ऐसा पैटर्न हो सकता है जिसकी क्षेत्रीय जाँच उचित होगी।"
+          },
+          "recommended_checks": [
+            {
+              "en": "Recommend a field check of removed entries for women in this booth.",
+              "hi": "इस भाग में महिलाओं की हटाई गई प्रविष्टियों की क्षेत्रीय जाँच की सिफारिश की जाती है।"
+            }
+          ],
+          "explanation_source": "agent",
+          "review": {"status": "PENDING", "note": null, "reviewed_at": null}
+        }
+      ]
+    },
+    {
+      "booth": {
+        "part_no": 42,
+        "draft_count": 790,
+        "final_count": 686,
+        "removed": 118,
+        "added": 14,
+        "deletion_rate": 0.149,
+        "reason_mix": {"ABSENT": 0.12, "SHIFTED": 0.45, "DEAD": 0.33, "DUPLICATE": 0.1},
+        "female_removed_share": 0.52,
+        "risk_score": 74,
+        "flagged": true,
+        "flag_count": 1
+      },
+      "flags": [
+        {
+          "flag_id": "f_42_1",
+          "part_no": 42,
+          "detector": "HOUSE_CLUSTER",
+          "severity": "MEDIUM",
+          "metric": {"name": "house_cluster_share", "value": 0.38, "baseline": 0.06},
+          "explanation": {
+            "en": "In booth 42, 38% of removals come from a small group of house numbers, compared with about 6% expected. This is worth verifying on the ground.",
+            "hi": "भाग संख्या 42 में 38% नाम मकान संख्याओं के एक छोटे समूह से हटाए गए हैं, जबकि अपेक्षित हिस्सा लगभग 6% है। मौके पर सत्यापन उचित होगा।"
+          },
+          "recommended_checks": [
+            {
+              "en": "Recommend a field check of the house numbers with the most removals.",
+              "hi": "सबसे अधिक नाम हटाए गए मकान संख्याओं की क्षेत्रीय जाँच की सिफारिश की जाती है।"
+            }
+          ],
+          "explanation_source": "template",
+          "review": {"status": "PENDING", "note": null, "reviewed_at": null}
+        }
+      ]
+    }
+  ],
+  "methodology": {
+    "version": "0.1",
+    "detectors": [
+      "DELETION_RATE",
+      "REASON_DOMINANCE",
+      "GENDER_SKEW",
+      "AGE_SKEW",
+      "HOUSE_CLUSTER",
+      "DUPLICATE_ENTRY",
+      "DATA_QUALITY"
+    ],
+    "thresholds": {
+      "deletion_rate_robust_z": 3.5,
+      "reason_dominance_share": 0.6,
+      "gender_skew_share": 0.65,
+      "house_cluster_share": 0.25,
+      "min_booth_voters": 300
+    }
+  },
+  "disclaimer": {
+    "en": "Flags are prompts for field verification. They do not establish wrongdoing or eligibility.",
+    "hi": "ये संकेत क्षेत्रीय सत्यापन के लिए सुझाव मात्र हैं। ये किसी अनियमितता या पात्रता को स्थापित नहीं करते।"
+  }
+}
