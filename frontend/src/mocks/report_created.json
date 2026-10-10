@@ -1,0 +1,17 @@
+{
+  "report_id": "VG-2026-0001",
+  "report_hash": "0xc265421957a9e0738c37d6a6e567c8dd32d9b7e2f68aa23ea8c0fc3ccbd174bf",
+  "snapshot_hashes": {
+    "draft": "0x1364a2279564450c583f847de1dd2bf79574675b4574c350f41290030c3bd70c",
+    "final": "0x39b1f734a7540db71624efafd03ebda5b76e7a1db2e67817c56b3d2ebf06b665",
+    "asdd": "0x2b030bfeb3f4e4c89a851b9e75092d81748d15af1787a7f23ff918f9306b60d5"
+  },
+  "tx_hash": "0x40fa803f4fa1ae3592fdcfd97b4cd78a8665f53a465cf33c7fb66d89042189c8",
+  "block_number": 12,
+  "recorded_at": "2026-10-10T10:05:00Z",
+  "supersedes": null,
+  "files": {
+    "json": "/files/VG-2026-0001.json",
+    "pdf": "/files/VG-2026-0001.pdf"
+  }
+}

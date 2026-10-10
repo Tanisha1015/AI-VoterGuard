@@ -1,0 +1,11 @@
+{
+  "status": "AMBIGUOUS",
+  "match_confidence": 0.62,
+  "record": null,
+  "reason": null,
+  "next_step": null,
+  "message": {
+    "en": "More than one entry matches these details. To protect privacy we do not list them. Please search again using your EPIC number.",
+    "hi": "इन विवरणों से एक से अधिक प्रविष्टियाँ मिलती हैं। गोपनीयता की रक्षा के लिए हम उन्हें सूचीबद्ध नहीं करते। कृपया अपने EPIC नंबर से दोबारा खोजें।"
+  }
+}

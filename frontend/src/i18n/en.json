@@ -1,0 +1,101 @@
+{
+  "app": {
+    "name": "VoterGuard India",
+    "tagline": "Electoral-roll revision audit (demo)",
+    "skip_to_content": "Skip to main content"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "citizen": "Citizen",
+    "reviewer": "Reviewer",
+    "verify": "Verify"
+  },
+  "lang": {
+    "label": "Language",
+    "en": "EN",
+    "hi": "हिन्दी"
+  },
+  "banner": {
+    "text": "Demo using synthetic data. This tool does not decide anyone's eligibility."
+  },
+  "disclaimer": {
+    "general": "This is a demonstration with synthetic data. Please confirm details with your Booth Level Officer or on the official Election Commission of India website."
+  },
+  "citizen": {
+    "title": "Check your entry in the roll",
+    "intro": "Enter your details exactly as they appear on your voter slip. We only show what the roll records; nothing you type is saved.",
+    "form_label": "Roll lookup form",
+    "name": "Your name",
+    "name_hint": "As written in the roll",
+    "relative_name": "Father's, mother's or husband's name",
+    "part_no": "Part (booth) number",
+    "part_no_hint": "Printed on your voter slip",
+    "use_epic": "Use my EPIC number instead",
+    "epic_no": "EPIC number",
+    "epic_hint": "For this demo, numbers start with VGX, for example VGX1234567",
+    "submit": "Check my entry",
+    "submitting": "Checking…",
+    "required_note": "All fields are required.",
+    "errors": {
+      "name_required": "Please enter your name.",
+      "relative_name_required": "Please enter the relative's name.",
+      "part_no_required": "Please enter the part number.",
+      "part_no_invalid": "Part number should be a whole number, such as 17.",
+      "epic_required": "Please enter your EPIC number.",
+      "rate_limited": "Many searches were made in a short time. Please wait a minute and try again.",
+      "network": "We could not reach the service. Please check your connection and try again.",
+      "generic": "Something did not work as expected. Please try again in a moment."
+    }
+  },
+  "result": {
+    "region_label": "Lookup result",
+    "status_label": "Status",
+    "epic": "EPIC (masked)",
+    "part_no": "Part number",
+    "name": "Name in roll",
+    "age_band": "Age group",
+    "reason": "Recorded reason",
+    "what_you_can_do": "What you can do",
+    "deadline": "Last date to apply",
+    "status": {
+      "PRESENT": {
+        "title": "Your name is in the final roll",
+        "body": "Your entry appears in the final roll for this part. No action is needed."
+      },
+      "REMOVED": {
+        "title": "Your entry is not in the final roll",
+        "body": "Your entry appeared in the draft roll but is not in the final roll. This can happen for several reasons, and it can be reviewed."
+      },
+      "ADDED": {
+        "title": "Your name has been added",
+        "body": "Your entry is new in the final roll for this part."
+      },
+      "NOT_FOUND": {
+        "title": "We could not find a matching entry",
+        "body": "Please check the spelling of both names and the part number, or try again using your EPIC number."
+      },
+      "AMBIGUOUS": {
+        "title": "More than one entry matches",
+        "body": "To protect privacy we do not list them. Please search again using your EPIC number."
+      }
+    },
+    "reasons": {
+      "ABSENT": "Recorded as not found at the address during house-to-house verification",
+      "SHIFTED": "Recorded as having moved to a different address",
+      "DEAD": "Recorded as deceased",
+      "DUPLICATE": "Recorded as a repeated entry"
+    },
+    "try_epic": "Search with EPIC number"
+  },
+  "placeholder": {
+    "coming_soon": "Coming soon",
+    "reviewer_title": "Reviewer dashboard",
+    "booth_title": "Booth {{part}}",
+    "verify_title": "Verify a report",
+    "body": "This section is being built. Please check back later."
+  },
+  "not_found": {
+    "title": "Page not found",
+    "back": "Go to the citizen page"
+  }
+}

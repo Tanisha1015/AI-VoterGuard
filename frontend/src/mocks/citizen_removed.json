@@ -1,0 +1,32 @@
+{
+  "status": "REMOVED",
+  "match_confidence": 0.97,
+  "record": {
+    "epic_masked": "VGX****482",
+    "part_no": 17,
+    "name_display": "Sunita D.",
+    "age_band": "26-35"
+  },
+  "reason": "SHIFTED",
+  "next_step": {
+    "title": {
+      "en": "If this is incorrect, you can ask for your name to be restored",
+      "hi": "यदि यह जानकारी सही नहीं है, तो आप अपना नाम पुनः जुड़वाने का अनुरोध कर सकते हैं"
+    },
+    "steps": [
+      {
+        "en": "Contact your Booth Level Officer or visit the official ECI portal",
+        "hi": "अपने बूथ स्तर अधिकारी से संपर्क करें या भारत निर्वाचन आयोग के आधिकारिक पोर्टल पर जाएँ"
+      },
+      {
+        "en": "Keep a proof of your current address ready",
+        "hi": "अपने वर्तमान पते का प्रमाण तैयार रखें"
+      }
+    ],
+    "deadline": "2026-10-31",
+    "disclaimer": {
+      "en": "Confirm current forms and deadlines on the official ECI website.",
+      "hi": "वर्तमान प्रपत्र और अंतिम तिथियाँ भारत निर्वाचन आयोग की आधिकारिक वेबसाइट पर जाँच लें।"
+    }
+  }
+}
