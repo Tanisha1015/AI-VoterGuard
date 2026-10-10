@@ -1,0 +1,33 @@
+{
+  "name": "voterguard-chain",
+  "version": "0.1.0",
+  "description": "VoterGuard India: ReportRegistry smart contract that records audit report hashes on a local chain.",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.10.0"
+  },
+  "scripts": {
+    "node": "hardhat node",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ignition": "^3.1.8",
+    "@nomicfoundation/hardhat-ignition-viem": "^3.1.6",
+    "@nomicfoundation/hardhat-keystore": "^3.1.1",
+    "@nomicfoundation/hardhat-network-helpers": "^3.0.11",
+    "@nomicfoundation/hardhat-node-test-runner": "^3.1.0",
+    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.7",
+    "@nomicfoundation/hardhat-verify": "^3.1.2",
+    "@nomicfoundation/hardhat-viem": "^3.0.9",
+    "@nomicfoundation/hardhat-viem-assertions": "^3.1.3",
+    "@nomicfoundation/ignition-core": "^3.1.10",
+    "@types/node": "^22.20.5",
+    "hardhat": "^3.19.0",
+    "typescript": "~5.9.3",
+    "viem": "^2.57.4"
+  }
+}
